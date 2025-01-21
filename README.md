@@ -12,18 +12,22 @@ This repository provides a simple **video annotation tool** intended to classify
 git clone https://github.com/YourUserName/goodBadFilterSVMP.git
 cd goodBadFilterSVMP
 ```
-### Create and Activate a Conda Environment
+### 2. Create and Activate a Conda Environment
 ```bash
 conda create -n goodBadFilterSVMP python=3.9
 conda activate goodBadFilterSVMP
 ```
 
-### Install Dependancies
+### 3. Install Dependancies
 ```bash
 pip install pyside6
 ```
 
-## Launch the tool
+### 4. Download clips from google drive
+I've pushed 4.2 hours of clips to the drive for you to annotate.
+Link: https://drive.google.com/file/d/1JIYtXhGjjwdtsvms9tzmKxqTWZJZG8Fb/view?usp=sharing
+
+## 5. Launch the tool
 ```bash
 python src/annotator/interface.py
 ```
