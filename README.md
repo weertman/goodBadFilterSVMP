@@ -25,7 +25,7 @@ pip install pyside6
 
 ### 4. Download clips from google drive
 I've pushed 4.2 hours of clips to the drive for you to annotate.
-Link: https://drive.google.com/file/d/1JIYtXhGjjwdtsvms9tzmKxqTWZJZG8Fb/view?usp=sharing
+Link: https://drive.google.com/drive/folders/10wNXE3BPpo8VcOLY5wu4TpcM48z6dBSr?usp=sharing
 
 ## 5. Launch the tool
 ```bash
