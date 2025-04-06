@@ -385,9 +385,23 @@ class AnnotationWindow(QMainWindow):
                 print(f"Starting at first unannotated clip: index {i}")
                 break
 
+        # MODIFIED: Instead of closing when all clips are annotated, just start at the first clip
         if not found_unannotated:
-            self._show_done_message()
-            return
+            # Ask if the user wants to review annotated clips
+            result = QMessageBox.question(
+                self,
+                "All Clips Annotated",
+                "All clips have already been annotated. Would you like to review and potentially re-annotate them?",
+                QMessageBox.Yes | QMessageBox.No,
+                QMessageBox.Yes
+            )
+
+            if result == QMessageBox.Yes:
+                self.current_index = 0
+                print("Starting review mode at first clip")
+            else:
+                self.close()
+                return
 
         # Set up progress bar
         self.progress_bar.setRange(0, len(self.clip_paths))
@@ -657,8 +671,21 @@ class AnnotationWindow(QMainWindow):
                                     "Could not determine the last annotated clip. Please try again.")
 
     def _show_done_message(self):
-        QMessageBox.information(self, "Done", "All clips have been annotated!")
-        self.close()
+        # MODIFIED: Add option to start over after reaching the end
+        result = QMessageBox.question(
+            self,
+            "All Clips Processed",
+            "You've reached the end of all clips. Would you like to start over from the beginning?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+
+        if result == QMessageBox.Yes:
+            self.current_index = 0
+            QTimer.singleShot(50, self.load_current_clip)
+        else:
+            QMessageBox.information(self, "Done", "All clips have been processed!")
+            self.close()
 
     ##########################################################################
     # 2.4) Speed and Pause
